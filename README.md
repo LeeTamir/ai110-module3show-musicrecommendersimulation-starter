@@ -69,6 +69,11 @@ flowchart TD
 ```
 
 ![alt text](<Screenshot 2026-04-09 at 12.23.23 PM.png>)
+![alt text](<Screenshot 2026-04-09 at 12.32.21 PM.png>)
+![alt text](<Screenshot 2026-04-09 at 12.33.09 PM.png>)
+![alt text](<Screenshot 2026-04-09 at 12.33.46 PM.png>)
+![alt text](<Screenshot 2026-04-09 at 12.34.26 PM.png>)
+![alt text](<Screenshot 2026-04-09 at 12.35.16 PM.png>)
 
 ---
 
