@@ -17,17 +17,31 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Real world recommenders (like Spotify or YouTube) combine behavior data from many users with song level attributes, then rank items by predicted fit for the current listener and context. My simulation prioritizes transparent, content based matching: songs score higher when they match a user’s preferred genre and mood and are close to the user’s target energy, with an acoustic bonus when the user prefers acoustic tracks. The top recommendations are the songs with the highest total scores.
 
-Some prompts to answer:
+- `Song` features used in this simulation: `genre`, `mood`, `energy`, `acousticness` (with `title` and `artist` shown in results).
+- `UserProfile` features used in this simulation: `favorite_genre`, `favorite_mood`, `target_energy`, `likes_acoustic`.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+```mermaid
+flowchart TD
+   A[Input: User Preferences<br/>favorite_genre, favorite_mood,<br/>target_energy, likes_acoustic]
+   B[Load Songs from data/songs.csv]
+   C[Start Loop: For each song in CSV]
+   D[Compute Song Score<br/>genre points + mood points +<br/>energy similarity + acoustic bonus]
+   E[Store result: (song, score, explanation)]
+   F{More songs left?}
+   G[Ranking Step<br/>Sort all scored songs by score DESC<br/>Tie-break: closer energy, then danceability]
+   H[Output: Top K Recommendations]
 
-You can include a simple diagram or bullet list if helpful.
+   A --> D
+   B --> C
+   C --> D
+   D --> E
+   E --> F
+   F -- Yes --> C
+   F -- No --> G
+   G --> H
+```
 
 ---
 
@@ -41,6 +55,7 @@ You can include a simple diagram or bullet list if helpful.
    python -m venv .venv
    source .venv/bin/activate      # Mac or Linux
    .venv\Scripts\activate         # Windows
+   ```
 
 2. Install dependencies
 
